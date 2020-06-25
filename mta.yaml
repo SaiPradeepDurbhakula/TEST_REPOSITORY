@@ -1,0 +1,20 @@
+ID: TEST
+_schema-version: '2.1'
+description: TEST
+version: 0.0.1
+
+modules:
+ - name: TEST_DB
+   type: hdb
+   path: TEST_DB
+   requires:
+    - name: hdi_TEST_DB
+
+resources:
+ - name: hdi_TEST_DB
+   parameters:
+      config:
+         schema: TEST_DB_SCHEMA
+   properties:
+      hdi-container-name: ${service-name}
+   type: com.sap.xs.hdi-container
