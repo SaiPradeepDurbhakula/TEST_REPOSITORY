@@ -2,19 +2,30 @@ ID: TEST
 _schema-version: '2.1'
 description: TEST
 version: 0.0.1
-
 modules:
- - name: TEST_DB
-   type: hdb
-   path: TEST_DB
-   requires:
-    - name: hdi_TEST_DB
-
+  - name: TEST_DB
+    type: hdb
+    path: TEST_DB
+    requires:
+      - name: hdi_TEST_DB
+        properties:
+          TARGET_CONTAINER: '~{hdi-container-name}'
+      - name: consumed-core-container
+        group: SERVICE_REPLACEMENTS
+        properties:
+          key: ServiceName_1
+          service: '~{the-service-name}'
 resources:
- - name: hdi_TEST_DB
-   parameters:
+  - name: hdi_TEST_DB
+    parameters:
       config:
-         schema: TEST_DB_SCHEMA
-   properties:
-      hdi-container-name: ${service-name}
-   type: com.sap.xs.hdi-container
+        schema: TEST_DB_SCHEMA
+    properties:
+      hdi-container-name: '${service-name}'
+    type: com.sap.xs.hdi-container
+  - name: consumed-core-container
+    parameters:
+      service-name: GENPROJ-hdiGENHANADB-S0021528265-wCdBwIXfshkfYqwKU
+    properties:
+      the-service-name: '${service-name}'
+    type: org.cloudfoundry.existing-service

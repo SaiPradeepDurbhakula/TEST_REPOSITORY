@@ -1,0 +1,8 @@
+{
+  "TEST.TEST_DB.synonyms::Synonym_0": {
+    "target": {
+      "object": "GEN_PROJ.GEN_HANA_DB.time_tables::TAB_FROM_FILE",
+      "schema": "GENPACT_SCHEMA_1"
+    }
+  }
+}
